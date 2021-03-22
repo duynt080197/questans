@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>{{q.title}}</h2>
+    <p>by: {{q.user}}&emsp;&emsp;{{q.add_time}}</p>
+    <p>tags: 
+    {%for tag in tags%}
+        <a href="#">{{tag}}</a>
+    {%endfor%}
+    </p>
+    <form action="{% url 'up' q.id %}" method='post' >
+        {% csrf_token %}
+        <li><input type="radio" value="1" name='up'>Upvote: {{q.up}}</li>
+        <input type='submit' value='gui'>
+    </form>
+    <form action="{% url 'down' q.id %}" method='post' >
+        {% csrf_token %}
+        <li><input type="radio" value="1" name='down'>Downvote: {{q.down}}</li>
+        <input type='submit' value='gui'>
+    </form>
+</div>
+<p>Answer: </p>
+<ul>
+{% for item in q.answer_set.all %}
+    <li>{{item.detail}}</li>
+    <p>by: {{item.user}}&emsp;&emsp;{{item.add_time}}</p>
+{%endfor%}
+</ul>
+{%endblock%}

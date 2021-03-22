@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">QuestAns</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/admin/myapp/answer/">Ask</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/myapp/question/">Questions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tags</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {%if dsquest%}
+        {% for item in dsquest %}
+            <div class = "container">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title"><a href="/detail/{{item.id}}">{{item.title}}</a></h2>
+                        <p class="card-text">Questions Detail</p>
+                        <p>
+                            <a href="#" class="mr-2">{{item.user}}</a>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+    {%else%}
+        <p>khong co cau hoi</p>
+    {%endif%}
+
+{%endblock%}
